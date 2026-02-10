@@ -25,16 +25,21 @@ if not exist "gui" (
 )
 
 REM Check and install dependencies
-echo Checking dependencies...
+REM First validate dependencies, then install if needed
+echo Validating dependencies...
 cd gui
 
-python ../check_deps.py
+python ../validate_deps.py
 if errorlevel 1 (
-    echo Warning: Some dependencies may have failed to install
-    echo Continuing with launch attempt...
-    echo If you encounter issues, try installing dependencies manually:
-    echo   pip install -r gui/requirements.txt
-    echo.
+    echo Some dependencies are missing. Attempting to install...
+    python ../check_deps.py
+    if errorlevel 1 (
+        echo Warning: Some dependencies may have failed to install
+        echo Continuing with launch attempt...
+        echo If you encounter issues, try installing dependencies manually:
+        echo   pip install -r gui/requirements.txt
+        echo.
+    )
 )
 
 cd ..

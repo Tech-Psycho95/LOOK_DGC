@@ -70,3 +70,19 @@ The script will:
 - Already installed packages are skipped for faster startup
 - Installation uses user-level packages when system installation is not available
 - Error handling ensures graceful failure with clear error messages
+
+### Issue 3: Enhanced Dependency Validation
+**Problem**: While the batch script checks for Python installation, it didn't verify that required packages are installed. This led to runtime errors when modules were missing.
+
+**Solution**:
+- Added comprehensive dependency validation to `launch_look_dgc.py`
+- Created dedicated `validate_deps.py` script for dependency checking
+- Enhanced batch script to validate dependencies before launching
+- Provides helpful error messages and installation guidance
+- Offers user option to continue launch despite missing dependencies
+
+## Additional Files Modified
+
+- **launch_look_dgc.py** - Added dependency validation before launching
+- **validate_deps.py** - New file for comprehensive dependency checking
+- **Launch-Look-DGC.bat** - Enhanced to use validation before launching
