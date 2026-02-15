@@ -282,7 +282,7 @@ class ToolTree(QTreeWidget):
                 tool_item.setData(0, Qt.UserRole + 1, i)
                 tool_item.setData(0, Qt.UserRole + 2, j)
                 tool_item.setToolTip(0, tool_infos[i][j])
-                if count < len(tool_progress) and tool_progress[count] == 0:
+                if tool_progress[count] == 0:
                     modify_font(tool_item, italic=True)
                 count += 1
             self.addTopLevelItem(group_item)
