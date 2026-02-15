@@ -16,6 +16,7 @@ import numpy as np
 import tensorflow.compat.v1 as tf
 
 tf.disable_v2_behavior()
+tf.compat.v1.logging.set_verbosity
 import os.path
 from .network import FullConvNet
 
@@ -27,7 +28,7 @@ chkpt_folder = os.path.join(os.path.dirname(__file__), "./nets/%s_jpg%d/model")
 tf.reset_default_graph()
 x_data = tf.placeholder(tf.float32, [1, None, None, 1], name="x_data")
 net = FullConvNet(x_data, 0.9, tf.constant(False), num_levels=17)
-saver = tf.train.Saver(net.variables_list)
+saver = tf.compat.v1.train.Saver(net.variables_list)
 
 configSess = tf.ConfigProto()
 configSess.gpu_options.allow_growth = True
